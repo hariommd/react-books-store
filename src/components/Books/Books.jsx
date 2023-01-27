@@ -6,6 +6,12 @@ const Books = ({ data }) => {
   const [showCart, setShowCart] = useState(false);
   const [cartData, setCartData] = useState([]);
 
+  const cartFilteredData = () => {
+    return cartData?.filter((cartItem) => {
+      return cartItem.quantity !== 0;
+    });
+  };
+
   const handleBookCart = (action, book) => {
     setShowCart(true);
     if (cartData?.length > 0) {
@@ -49,7 +55,7 @@ const Books = ({ data }) => {
           return (
             <BookItem
               key={book.id}
-              cart={cartData}
+              cart={cartFilteredData()}
               book={book}
               handler={handleBookCart}
             />
@@ -60,7 +66,7 @@ const Books = ({ data }) => {
       {/* BookCart */}
       <Cart
         show={showCart}
-        data={cartData}
+        data={cartFilteredData()}
         handler={handleBookCart}
         handleShowCart={setShowCart}
       />

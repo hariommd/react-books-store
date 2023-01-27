@@ -1,0 +1,13 @@
+...prevData.map((each) => {
+          if (each.id === book.id) {
+            if (action == 1) {
+              return { ...each, quantity: each.quantity + 1 };
+            } else {
+              return {
+                ...each,
+                quantity: each.quantity == 0 ? 0 : each.quantity - 1,
+              };
+            }
+          }
+          return { ...book, quantity: 1 };
+        }),

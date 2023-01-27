@@ -1,4 +1,5 @@
 import React from 'react';
+import BookItem from '../Books/BookItem';
 
 const Cart = ({ show, data, handleShowCart, handler }) => {
   const totalPrice = data.reduce((total, curr) => {
@@ -25,30 +26,7 @@ const Cart = ({ show, data, handleShowCart, handler }) => {
       <div className="border-top py-3 border-bottom">
         <ul className="list-unstyled cart-list">
           {data?.map((book, index) => {
-            const { id, name, price, quantity } = book;
-            return (
-              <li className="cart-list__item" key={`cart-item-${index}`}>
-                <div className="info">
-                  <h4>{name}</h4>
-                  <p className="price">Rs.{price}</p>
-                  <p className="quantity">{quantity}</p>
-                </div>
-                <div className="action d-flex p-2">
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => handler(1, book)}
-                  >
-                    <i className="fa-solid fa-plus"></i>
-                  </button>
-                  <button
-                    className="btn btn-danger"
-                    onClick={() => handler(-1, book)}
-                  >
-                    <i className="fa-solid fa-minus"></i>
-                  </button>
-                </div>
-              </li>
-            );
+            return <BookItem key={book.id} book={book} handler={handler} />;
           })}
         </ul>
       </div>

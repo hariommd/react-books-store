@@ -1,18 +1,28 @@
 import React, { useEffect } from 'react';
 
 const BookItem = ({ book, handler, cart }) => {
-  const { id, name, lang, dop, price } = book;
+  const { id } = book;
+  const { title, language, publishedDate, pageCount, imageLinks } =
+    book.volumeInfo;
+
   const currentCartItemQuantity =
     cart.filter((cartItem) => {
+      console.log('Filter', cartItem.id, id);
       return cartItem.id === id;
     })[0]?.quantity ?? 0;
+  // console.log('BookItem - Cart ===>', currentCartItemQuantity);
   return (
     <li className="book-list__item">
       <div className="info">
-        <h4>{name}</h4>
-        <p className="lang"> {lang}</p>
-        <p className="dop">{dop}</p>
-        <p className="price">Rs. {price}</p>
+        <img
+          src={`${imageLinks.thumbnail}`}
+          alt="book-img"
+          className="img-fluid"
+        />
+        <h4>{title}</h4>
+        <p className="lang"> {language}</p>
+        <p className="dop">{publishedDate}</p>
+        <p className="price">Rs. {pageCount}</p>
       </div>
       <div className="action">
         <button className="btn btn-primary" onClick={() => handler(1, book)}>

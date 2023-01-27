@@ -12,7 +12,7 @@ const BookItem = ({ book, handler, cart }) => {
         <h4>{name}</h4>
         <p className="lang"> {lang}</p>
         <p className="dop">{dop}</p>
-        <p className="price">Rs.{price}</p>
+        <p className="price">Rs. {price}</p>
       </div>
       <div className="action">
         <button className="btn btn-primary" onClick={() => handler(1, book)}>

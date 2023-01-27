@@ -41,7 +41,8 @@ main {
   right: 0;
 }
 .cart-list {
-  max-height: 200px;
+  height: calc(100vh - 275px);
+  margin-bottom: 0;
   overflow-y: auto;
 }
 

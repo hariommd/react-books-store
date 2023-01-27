@@ -2,8 +2,9 @@ import React from 'react';
 import BookItem from '../Books/BookItem';
 
 const Cart = ({ show, data, handleShowCart, handler }) => {
+  console.log('CartData ===>', data);
   const totalPrice = data.reduce((total, curr) => {
-    return (total += curr.price * curr.quantity);
+    return (total += curr.volumeInfo.pageCount * curr.quantity);
   }, 0);
 
   const totalQuantity = data.reduce((total, curr) => {

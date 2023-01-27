@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 const BookItem = ({ book, handler, cart }) => {
   const { id } = book;
@@ -6,11 +6,11 @@ const BookItem = ({ book, handler, cart }) => {
     book.volumeInfo;
 
   const currentCartItemQuantity =
-    cart.filter((cartItem) => {
+    cart?.filter((cartItem) => {
       console.log('Filter', cartItem.id, id);
       return cartItem.id === id;
-    })[0]?.quantity ?? 0;
-  // console.log('BookItem - Cart ===>', currentCartItemQuantity);
+    })[0]?.quantity || 0;
+
   return (
     <li className="book-list__item">
       <div className="info">

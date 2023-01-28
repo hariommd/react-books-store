@@ -13,7 +13,7 @@ main {
   display: flex;
   justify-content: center;
   position: fixed;
-  bottom: 10%;
+  bottom: 5%;
   right: -100%;
   z-index: 1;
   transition: right 0.5s;
@@ -94,12 +94,15 @@ main {
 .book-list__item p {
   margin: 5px 0;
 }
-.book-list__item .info,
+.book-list__item .info {
+  padding: 20px 20px 0 20px;
+}
 .book-list__item .action {
-  padding: 20px;
+  padding: 10px 0;
 }
 
 .cart {
+  padding: 15px;
   position: fixed;
   top: 0;
   right: -100%;
@@ -114,9 +117,34 @@ main {
 .cart.show {
   right: 0;
 }
+.cart-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
 .cart-list {
+  max-height: 250px;
   margin-bottom: 0;
   overflow-y: auto;
+}
+.cart-list .book-list__item .book-img-wrapper {
+  display: none;
+}
+.cart-list .book-list__item h4 {
+  white-space: initial;
+  overflow: visible;
+  max-width: none;
+}
+.cart-list::-webkit-scrollbar {
+  width: 0;
+}
+
+.cart__action {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 10px;
+  width: 90%;
 }
 
 .action {
@@ -130,7 +158,7 @@ main {
     bottom: -100%;
     left: 50%;
     transform: translateX(-50%);
-    width: 200px;
+    width: 250px;
     padding: 10px 0;
     transition: bottom 0.5s;
   }

@@ -39,6 +39,11 @@ const Books = ({ data }) => {
     }
   };
 
+  const handleCheckout = ({ quantity, amount }) => {
+    alert(`Thank you for purchase of ${quantity} items for Rs.${amount} !`);
+    setCartData([]);
+  };
+
   useEffect(() => {}, [cartData]);
 
   return (
@@ -63,6 +68,7 @@ const Books = ({ data }) => {
         data={cartFilteredData()}
         handler={handleBookCart}
         handleShowCart={setShowCart}
+        handleCheckout={handleCheckout}
       />
     </>
   );

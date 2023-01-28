@@ -13,19 +13,16 @@ const Books = ({ data }) => {
   };
 
   const handleBookCart = (action, book) => {
-    setShowCart(true);
     if (cartData?.length > 0) {
       const alreadyPresent = cartData.some((cart) => {
         return cart.id === book.id;
       });
       if (!alreadyPresent) {
-        console.log('New Book');
         book['quantity'] = 1;
         setCartData((prev) => {
           return [...prev, book];
         });
       } else {
-        console.log('Old Book');
         setCartData((prev) => {
           const newCartData = prev.map((each) => {
             const newCart = Object.assign({}, each);
@@ -38,14 +35,11 @@ const Books = ({ data }) => {
         });
       }
     } else {
-      console.log('no length initial');
       setCartData([...cartData, { ...book, quantity: 1 }]);
     }
   };
 
-  useEffect(() => {
-    console.log(cartData);
-  }, [cartData]);
+  useEffect(() => {}, [cartData]);
 
   return (
     <>

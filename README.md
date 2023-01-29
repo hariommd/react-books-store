@@ -1,3 +1,5 @@
 # react-books-store
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/react-r7uzlh)
+## Consumes Google Books API
+
+[Live Project Link ⚡️](https://books-store-react.stackblitz.io)

@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import BookItem from '../Books/BookItem';
 
 const Cart = ({ show, data, handleShowCart, handler, handleCheckout }) => {
+  const [discount, setDiscount] = useState(0);
+
+  const discountCodes = [10, 20, 30];
+
   const totalPrice = data.reduce((total, curr) => {
     return (total += curr.volumeInfo.pageCount * curr.quantity);
   }, 0);
@@ -10,8 +14,16 @@ const Cart = ({ show, data, handleShowCart, handler, handleCheckout }) => {
     return (total += curr.quantity);
   }, 0);
 
-  totalQuantity == 0 && handleShowCart(false);
+  const discountAmount = Math.floor((discount / 100) * totalPrice);
+  const discountedPrice =
+    totalPrice - Math.floor((discount / 100) * totalPrice);
 
+  totalQuantity == 0 && handleShowCart(false) && setDiscount(0);
+
+  const handleDiscount = (discountPercent) => {
+    if (discountPercent === 0) return;
+    setDiscount(discountPercent);
+  };
   return (
     <>
       <aside className={`cart ${show ? 'show' : ''}`}>
@@ -40,17 +52,50 @@ const Cart = ({ show, data, handleShowCart, handler, handleCheckout }) => {
         </div>
         {totalQuantity !== 0 && (
           <div className="cart__action">
-            <h5 className="pt-2 mt-3">Total Items: {totalQuantity} </h5>
+            <p>Apply Below Code Get Upto 30% off on Total Value</p>
+            <div className="d-flex gap-3">
+              {discountCodes.map((each) => {
+                return (
+                  <button
+                    key={`discount-code-${each}`}
+                    className={`btn ${
+                      discount === each ? 'btn-info' : 'btn-outline-info'
+                    }`}
+                    disabled={discount && true}
+                    onClick={() => handleDiscount(each)}
+                  >
+                    GET{`${each}`}
+                  </button>
+                );
+              })}
+            </div>
+            <h5 className="pt-2 mt-2">Total Items: {totalQuantity} </h5>
+            <h5>Total Amount : Rs{totalPrice}</h5>
+            {discount !== 0 && (
+              <>
+                <div class="d-flex justify-content-between flex-wrap">
+                  <h5>Discount Applied : Rs{discountAmount}</h5>
+                  <button
+                    className="btn text-danger py-0"
+                    onClick={() => {
+                      setDiscount(0);
+                    }}
+                  >
+                    Remove
+                  </button>
+                </div>
+              </>
+            )}
             <button
-              className="btn btn-primary w-100"
+              className="btn btn-primary pay-button"
               onClick={() => {
                 handleCheckout({
                   quantity: totalQuantity,
-                  amount: totalPrice,
+                  amount: discountedPrice,
                 });
               }}
             >
-              Pay : Rs.{totalPrice}{' '}
+              Pay : Rs.{discountedPrice}
             </button>
           </div>
         )}

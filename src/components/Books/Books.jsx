@@ -49,7 +49,7 @@ const Books = ({ data }) => {
   return (
     <>
       {/* BookList  */}
-      <ul className="list-unstyled book-list">
+      <ul className={`list-unstyled book-list ${showCart && 'cart-active'}`}>
         {data?.map((book) => {
           return (
             <BookItem

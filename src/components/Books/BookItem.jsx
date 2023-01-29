@@ -24,7 +24,7 @@ const BookItem = ({ book, handler, cart }) => {
         <p className="price">Rs. {pageCount}</p>
       </div>
       <div className="action">
-        <div className="btn-group w-75 mx-auto" role="group">
+        <div className="btn-group" role="group">
           {currentCartItemQuantity !== 0 && (
             <button
               type="button"

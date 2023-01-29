@@ -21,7 +21,16 @@ const BookItem = ({ book, handler, cart }) => {
       </div>
       <div className="info">
         <h4>{title}</h4>
-        <p className="price">Rs. {pageCount}</p>
+        <p className="price">
+          Rs. {pageCount}{' '}
+          {currentCartItemQuantity !== 0 && (
+            <>
+              <span>*</span>
+              <span> {currentCartItemQuantity} </span>
+              <span> = Rs.{pageCount * currentCartItemQuantity}</span>
+            </>
+          )}{' '}
+        </p>
       </div>
       <div className="action">
         <div className="btn-group" role="group">

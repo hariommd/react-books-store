@@ -69,8 +69,8 @@ const Cart = ({ show, data, handleShowCart, handler, handleCheckout }) => {
                 );
               })}
             </div>
-            <h5 className="pt-2 mt-2">Total Items: {totalQuantity} </h5>
-            <h5>Total Amount : Rs{totalPrice}</h5>
+            <h5 className="pt-2 mt-2 mt-lg-3">Total Items: {totalQuantity} </h5>
+            <h5 className="mt-2 mt-lg-3">Total Amount : Rs{totalPrice}</h5>
             {discount !== 0 && (
               <>
                 <div class="d-flex justify-content-between flex-wrap">

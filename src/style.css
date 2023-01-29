@@ -212,6 +212,9 @@ main {
 .cart__action {
   margin-top: 10px;
 }
+.cart__action p {
+  font-size: 14px;
+}
 .cart__action h5 {
   font-size: 16px;
   font-weight: 600;
@@ -248,6 +251,15 @@ main {
   }
   .cart-list {
     height: calc(100vh - 355px);
+  }
+  .cart-list .book-list__item h4 {
+    font-size: 16px;
+  }
+  .cart-list .book-list__item .price {
+    font-weight: 600;
+  }
+  .cart__action h5 {
+    margin-top: 10px;
   }
 }
 @media screen and (max-width: 767px) {

@@ -7,7 +7,7 @@ const Cart = ({ show, data, handleShowCart, handler, handleCheckout }) => {
   const discountCodes = [10, 20, 30];
 
   const totalPrice = data.reduce((total, curr) => {
-    return (total += curr.volumeInfo.pageCount * curr.quantity);
+    return (total += curr.volumeInfo.pageCount ?? 100 * curr.quantity);
   }, 0);
 
   const totalQuantity = data.reduce((total, curr) => {

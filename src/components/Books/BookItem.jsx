@@ -13,7 +13,10 @@ const BookItem = ({ book, handler, cart }) => {
     <li className="book-list__item">
       <div className="book-img-wrapper">
         <img
-          src={`${imageLinks.thumbnail}`}
+          src={`${
+            imageLinks?.thumbnail ??
+            'https://dynamicmediainstitute.org/wp-content/themes/dynamic-media-institute/imagery/default-book.png'
+          }`}
           alt="book-img"
           className="img-fluid"
         />
@@ -22,12 +25,12 @@ const BookItem = ({ book, handler, cart }) => {
       <div className="info">
         <h4>{title}</h4>
         <p className="price">
-          Rs. {pageCount}{' '}
+          Rs. {pageCount ?? 100}{' '}
           {currentCartItemQuantity !== 0 && (
             <>
               <span>*</span>
               <span> {currentCartItemQuantity} </span>
-              <span> = Rs.{pageCount * currentCartItemQuantity}</span>
+              <span> = Rs.{pageCount ?? 100 * currentCartItemQuantity}</span>
             </>
           )}{' '}
         </p>

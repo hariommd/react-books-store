@@ -3,7 +3,7 @@ import './style.css';
 import Books from './components/Books/Books.jsx';
 
 export default function App() {
-  const [bookQuery, setBookQuery] = useState('react');
+  const [bookQuery, setBookQuery] = useState('');
   const [booksData, setBooksData] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -13,6 +13,10 @@ export default function App() {
     const query = searchInputRef.current.value;
     console.log('Searched For ===>', query);
     setBookQuery(query);
+  };
+  const clearSearch = () => {
+    setBookQuery('');
+    searchInputRef.current.value = '';
   };
   useEffect(() => {
     setIsLoading(true);
@@ -29,13 +33,25 @@ export default function App() {
     <div className="main-layout">
       <h1 className="text-center py-4 fw-bold">HD's Books Store - React</h1>
       <div className="mb-3 d-flex flex-column flex-md-row align-items-center w-75 mx-auto gap-2">
-        <input
-          type="search"
-          name=""
-          id=""
-          className="form-control"
-          ref={searchInputRef}
-        />
+        <div className="position-relative w-100">
+          <input
+            type="text"
+            name=""
+            id=""
+            className="form-control pe-4"
+            placeHolder="Search Book...."
+            ref={searchInputRef}
+          />
+          {bookQuery != '' && (
+            <button
+              className="btn btn-danger btn-sm position-absolute top-50 end-0 translate-middle-y me-1"
+              onClick={clearSearch}
+            >
+              X
+            </button>
+          )}
+        </div>
+
         <button className="btn btn-primary" onClick={handleSearch}>
           Search
         </button>

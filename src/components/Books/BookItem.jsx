@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
+import BookInfo from '../Modals/BookInfo';
 
 const BookItem = ({ book, handler, cart }) => {
+  const [show, setShow] = useState(false);
+
+  const handleBookInfo = () => {
+    setShow(!show);
+  };
+
   const { id } = book;
   const { title, publishedDate, pageCount, imageLinks } = book.volumeInfo;
 
@@ -10,7 +17,7 @@ const BookItem = ({ book, handler, cart }) => {
     })[0]?.quantity || 0;
 
   return (
-    <li className="book-list__item">
+    <li className="book-list__item" onClick={handleBookInfo}>
       <div className="book-img-wrapper">
         <img
           src={`${
@@ -61,6 +68,10 @@ const BookItem = ({ book, handler, cart }) => {
           </button>
         </div>
       </div>
+
+      {show && (
+        <BookInfo book={book} show={show} handleClose={handleBookInfo} />
+      )}
     </li>
   );
 };

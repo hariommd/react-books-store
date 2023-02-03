@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import BookItem from '../Books/BookItem';
 import Cart from '../Books/Cart';
 
-const Books = ({ data }) => {
+const Books = ({ data, handleBookInfo }) => {
   const [showCart, setShowCart] = useState(false);
   const [cartData, setCartData] = useState([]);
 
@@ -57,6 +57,7 @@ const Books = ({ data }) => {
               cart={cartFilteredData()}
               book={book}
               handler={handleBookCart}
+              handleBookInfo={handleBookInfo}
             />
           );
         })}

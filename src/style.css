@@ -9,6 +9,11 @@ main {
   padding: 20px 15px;
 }
 
+.custom-tooltip {
+  z-index: 2;
+  background-color: rgb(13, 110, 253);
+}
+
 .loader-wrapper {
   position: absolute;
   top: 50%;
@@ -109,6 +114,7 @@ main {
   height: 200px;
   border-radius: 3px;
   border-bottom: 1px solid #ddd;
+  cursor: pointer;
 }
 .book-list__item .book-img-wrapper img {
   min-width: 100%;

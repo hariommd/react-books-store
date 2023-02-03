@@ -5,6 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 function BookInfo({ book, show, handleClose }) {
   const { id } = book;
   const { title, publishedDate, pageCount, imageLinks } = book.volumeInfo;
+  console.log('BookInfo Called');
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>

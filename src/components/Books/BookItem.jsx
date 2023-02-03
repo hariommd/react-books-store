@@ -1,13 +1,7 @@
-import React, { useState } from 'react';
-import BookInfo from '../Modals/BookInfo';
+import React from 'react';
+import { Tooltip } from 'react-tooltip';
 
-const BookItem = ({ book, handler, cart }) => {
-  const [show, setShow] = useState(false);
-
-  const handleBookInfo = () => {
-    setShow(!show);
-  };
-
+const BookItem = ({ book, handler, cart, handleBookInfo }) => {
   const { id } = book;
   const { title, publishedDate, pageCount, imageLinks } = book.volumeInfo;
 
@@ -17,8 +11,9 @@ const BookItem = ({ book, handler, cart }) => {
     })[0]?.quantity || 0;
 
   return (
-    <li className="book-list__item" onClick={handleBookInfo}>
-      <div className="book-img-wrapper">
+    <li className="book-list__item">
+      <Tooltip anchorId={id} className="custom-tooltip" />
+      <div className="book-img-wrapper" onClick={() => handleBookInfo(book)}>
         <img
           src={`${
             imageLinks?.thumbnail ??
@@ -30,7 +25,9 @@ const BookItem = ({ book, handler, cart }) => {
         <p className="dop">{new Date(publishedDate).getFullYear()}</p>
       </div>
       <div className="info">
-        <h4>{title}</h4>
+        <h4 id={id} data-tooltip-content={title}>
+          {title}
+        </h4>
         <p className="price">
           Rs. {pageCount ?? 100}{' '}
           {currentCartItemQuantity !== 0 && (
@@ -48,7 +45,11 @@ const BookItem = ({ book, handler, cart }) => {
             <button
               type="button"
               className="btn btn-danger"
-              onClick={() => handler(-1, book)}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                handler(-1, book);
+              }}
             >
               -
             </button>
@@ -61,17 +62,17 @@ const BookItem = ({ book, handler, cart }) => {
           <button
             type="button"
             className="btn btn-danger"
-            onClick={() => handler(1, book)}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              handler(1, book);
+            }}
           >
             {currentCartItemQuantity === 0 && <span>ADD</span>}
             {currentCartItemQuantity > 0 && <span>+</span>}
           </button>
         </div>
       </div>
-
-      {show && (
-        <BookInfo book={book} show={show} handleClose={handleBookInfo} />
-      )}
     </li>
   );
 };

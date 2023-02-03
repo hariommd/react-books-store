@@ -9,6 +9,7 @@ export default function App() {
   const [userAuth, setUserAuth] = useState({
     isLoggedIn: false,
     user: {
+      name: '',
       email: '',
     },
   });
@@ -18,6 +19,24 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [show, setShow] = useState(false);
   const [bookInfo, setBookInfo] = useState();
+
+  const handleUserAuth = (validatedUser) => {
+    setUserAuth(() => {
+      return {
+        isLoggedIn: true,
+        user: { name: validatedUser.name, email: validatedUser.email },
+      };
+    });
+  };
+
+  const handleLogout = () => {
+    setUserAuth(() => {
+      return {
+        isLoggedIn: false,
+        user: { name: '', email: '' },
+      };
+    });
+  };
 
   const handleBookInfo = (book) => {
     setShow(!show);
@@ -49,8 +68,16 @@ export default function App() {
   return (
     <div className="main-layout">
       <h1 className="text-center py-4 fw-bold">HD's Books Store - React</h1>
+      {isLoggedIn && (
+        <div className=" pe-3 d-flex justify-content-end">
+          <button className="btn btn-danger" onClick={handleLogout}>
+            Logout
+          </button>
+        </div>
+      )}
       {isLoggedIn ? (
         <>
+          <h2 className="py-3 text-center">Welcome {user.name}</h2>
           <div className="mb-3 d-flex flex-column flex-md-row align-items-center w-75 mx-auto gap-2">
             <div className="position-relative w-100">
               <input
@@ -98,7 +125,7 @@ export default function App() {
           )}
         </>
       ) : (
-        <Login />
+        <Login {...userAuth} handler={handleUserAuth} />
       )}
     </div>
   );

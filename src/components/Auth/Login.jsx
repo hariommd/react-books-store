@@ -30,7 +30,7 @@ const Login = ({ user, handler }) => {
     userPassRef.current.value = '';
   };
   return (
-    <div class="p-4 w-75 mx-auto">
+    <div class="p-4 w-75 mx-auto h-100">
       <form action="">
         <div class="mb-3">
           <label for="user-email" class="form-label">

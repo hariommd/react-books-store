@@ -2,19 +2,19 @@ export const users = [
   {
     id: 1,
     name: 'Hariom',
-    email: 'hariom@hdbookstore.com',
+    email: 'hariom@hbs.com',
     pass: 'hariom123',
   },
   {
     id: 2,
     name: 'Revati',
-    email: 'revati@hdbookstore.com',
+    email: 'revati@hbs.com',
     pass: 'revati123',
   },
   {
     id: 3,
     name: 'Mansi',
-    email: 'mansi@hdbookstore.com',
+    email: 'mansi@hbs.com',
     pass: 'mansi123',
   },
 ];

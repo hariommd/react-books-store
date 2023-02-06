@@ -67,14 +67,20 @@ export default function App() {
   }, [bookQuery]);
   return (
     <div className="main-layout">
-      <h1 className="text-center py-4 fw-bold">HD's Books Store - React</h1>
-      {isLoggedIn && (
-        <div className=" pe-3 d-flex justify-content-end">
-          <button className="btn btn-danger" onClick={handleLogout}>
-            Logout
-          </button>
-        </div>
-      )}
+      <header className="header">
+        <h1 className="text-center py-4 fw-bold">HD's Books Store - React</h1>
+        {isLoggedIn && (
+          <div className=" pe-3 d-flex justify-content-end">
+            <button
+              className="btn btn-outline-danger logout-btn"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+          </div>
+        )}
+      </header>
+
       {isLoggedIn ? (
         <>
           <h2 className="py-3 text-center">Welcome {user.name}</h2>
